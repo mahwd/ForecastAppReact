@@ -10,7 +10,7 @@ export default class App extends Component {
 
         this.state = {
             cities: [],
-            unit: 'C'
+            unit: 'C',
         }
     }
 
@@ -24,13 +24,6 @@ export default class App extends Component {
         console.log(this.state.cities);
     };
 
-    // checks if state or props changed
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.unit !== nextState.unit) {
-            this.configureUnits(nextState.unit);
-        }
-        return true;
-    }
 
     _getResults = (data) => {
         // assume data is new city
@@ -64,12 +57,27 @@ export default class App extends Component {
         console.log("str=" + str);
     };
 
+    _isCleared = (isCleared) => {
+        if(isCleared){
+            this.setState({cities:[],unit:'C'});
+        }
+    };
+
+    // checks if state or props changed
+    shouldComponentUpdate(nextProps, nextState) {
+        this.setState({clear:false});
+        if (this.state.unit !== nextState.unit) {
+            this.configureUnits(nextState.unit);
+        }
+        return true;
+    }
+
     render() {
         return (
             <div className="app">
-                <Search getResults={this._getResults} unit={this.state.unit}/>
+                <Search getResults={this._getResults} unit={this.state.unit} clear={this._isCleared}/>
                 <SearchResult cities={this.state.cities}/>
-                <Filters getUnit={this._getUnit}/>
+                <Filters getUnit={this._getUnit} />
             </div>
         );
     }

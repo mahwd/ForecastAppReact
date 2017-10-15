@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ReduxSimpleStarter
 
 Interested in learning [Redux](https://www.udemy.com/react-redux/)?
@@ -23,3 +24,7 @@ Click [here](https://github.com/StephenGrider/ReactStarter/releases) then downlo
 > npm install
 > npm start
 ```
+=======
+# ForecastAppReact
+Whether Forecast App in ReactJs
+>>>>>>> b35f1bd8d1073135f4ce80ce291f5f19bd6a7673

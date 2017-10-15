@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-
 const apiKey = '27cb999c93709b76e41d3638da96eb28';
 const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?';
 
@@ -32,6 +31,9 @@ class Search extends Component {
         }
     }
 
+    handleClear = () => {
+      this.props.clear(true);
+    };
 
     handleRequest = () => {
 
@@ -40,9 +42,11 @@ class Search extends Component {
         if (this.state.status) {
             axios.get(requestUrl)
                 .then((response) => {
+                    console.log(response);
                     this._successMessage(response);
                 })
                 .catch((error) => {
+                    console.log(error);
                     let {errorContent} = this.state;
                     errorContent = <p style={{color: 'red', fontSize: 14,}}> i have no information about this city </p>
                     this.setState({errorContent: errorContent});
@@ -55,8 +59,8 @@ class Search extends Component {
 
     _successMessage = (response) => {
         const temp = response.data.main.temp;
-        const temp_F = temp * 9 / 5 + 32;
-        const temp_K = parseFloat((temp_F + 459.67) * 5 / 9).toFixed(2);
+        const temp_F = parseFloat(temp * 9 / 5 + 32).toFixed(2);
+        const temp_K = parseFloat((parseFloat(temp_F) + 459.67) * 5 / 9).toFixed(2);
         this.props.getResults({
             name: this.state.cityName,
             value_C: temp,
@@ -71,7 +75,7 @@ class Search extends Component {
             <div>
                 <input value={this.state.cityName} type="text" placeholder="find city" onChange={this.handleSearch}/>
                 <button onClick={this.handleRequest}>Add city</button>
-                <button>Clear</button>
+                <button onClick={this.handleClear}>Clear</button>
                 <hr/>
                 {this.state.errorContent}
 

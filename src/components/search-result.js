@@ -15,7 +15,6 @@ class SearchResult extends Component {
 
 
     render() {
-        console.log(this.props.cities);
         return (
             <div className="search-result">
                 <ul>
