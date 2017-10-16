@@ -23,21 +23,14 @@ class Search extends Component {
         });
     };
 
-    componentWillReceiveProps(nextprops) {
-        if (this.props.unit !== nextprops.unit) {
-            this.props = nextprops;
-            this.setState({unit: nextprops.unit});
-            this.handleRequest();
-        }
-    }
-
     handleClear = () => {
       this.props.clear(true);
       this.setState({cityName:''});
     };
 
-    handleRequest = () => {
 
+    // handles button click and sends api call
+    handleRequest = () => {
         let requestUrl = baseUrl + 'APPID=' + apiKey;
         requestUrl += '&q=' + this.state.cityName + '&units=metric';
         if (this.state.status) {
@@ -59,6 +52,7 @@ class Search extends Component {
         this.state.status = false;
     };
 
+    // creates object
     _successMessage = (response) => {
         const temp = response.data.main.temp;
         const temp_F = parseFloat(temp * 9 / 5 + 32).toFixed(2);
