@@ -25,6 +25,7 @@ export default class App extends Component {
         console.log(this.state.cities);
     };
 
+    // invokes when Add City button clicked
     _getResults = (data) => {
         // assume data is new city
         let isNewEntry = true;
@@ -51,11 +52,13 @@ export default class App extends Component {
         isNewEntry = true;
     };
 
+    // invokes when unit (radio buttons ) is clicked
     _getUnit = (str) => {
         const {unit} = this.state;
         unit === str ? console.log("same unit") : this.setState({unit: str});
     };
 
+    // invokes when clear button clicked
     _isCleared = (isCleared) => {
         if(isCleared){
             this.setState({cities:[]});
