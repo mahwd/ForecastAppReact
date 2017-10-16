@@ -3,16 +3,12 @@ import ListData from './listData';
 
 
 class SearchResult extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentWillReceiveProps(nextprops) {
         if (this.props.cities !== nextprops.cities) {
             this.props = nextprops;
         }
     }
-
 
     render() {
         return (

@@ -33,6 +33,7 @@ class Search extends Component {
 
     handleClear = () => {
       this.props.clear(true);
+      this.setState({cityName:''});
     };
 
     handleRequest = () => {
@@ -40,6 +41,7 @@ class Search extends Component {
         let requestUrl = baseUrl + 'APPID=' + apiKey;
         requestUrl += '&q=' + this.state.cityName + '&units=metric';
         if (this.state.status) {
+            console.log("response");
             axios.get(requestUrl)
                 .then((response) => {
                     console.log(response);
@@ -78,12 +80,9 @@ class Search extends Component {
                 <button onClick={this.handleClear}>Clear</button>
                 <hr/>
                 {this.state.errorContent}
-
             </div>
         );
     }
-
-
 }
 
 

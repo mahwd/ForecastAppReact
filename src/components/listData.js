@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class ListData extends React.Component {
+class ListData extends Component {
 
 
     render() {
